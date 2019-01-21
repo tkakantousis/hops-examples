@@ -16,9 +16,9 @@ package io.hops.examples.spark.kafka;
 
 import com.google.common.base.Strings;
 import com.twitter.bijection.Injection;
-import io.hops.util.exceptions.CredentialsNotFoundException;
 import io.hops.util.HopsProducer;
 import io.hops.util.Hops;
+import io.hops.util.exceptions.JWTNotFoundException;
 import io.hops.util.exceptions.SchemaNotFoundException;
 import io.hops.util.spark.SparkConsumer;
 import io.hops.util.spark.SparkProducer;
@@ -109,7 +109,7 @@ public final class StreamingExample {
                 Thread.sleep(1000);
                 i++;
               }
-            } catch (SchemaNotFoundException | CredentialsNotFoundException | InterruptedException ex) {
+            } catch (SchemaNotFoundException | JWTNotFoundException | InterruptedException ex) {
               Logger.getLogger(StreamingExample.class.getName()).
                   log(Level.SEVERE, null, ex);
             }

@@ -15,8 +15,8 @@
 package io.hops.examples.spark.kafka;
 
 import com.google.common.base.Strings;
-import io.hops.util.exceptions.CredentialsNotFoundException;
 import io.hops.util.Hops;
+import io.hops.util.exceptions.JWTNotFoundException;
 import io.hops.util.exceptions.WorkflowManagerException;
 import io.hops.util.spark.SparkConsumer;
 import java.io.BufferedReader;
@@ -94,11 +94,9 @@ public final class StreamingKafkaElastic {
     }).map(new Function<JSONObject, LogEntryFilebeat>() {
       @Override
       public LogEntryFilebeat call(JSONObject json) throws Exception {
-        LogEntryFilebeat logEntry
-            = new LogEntryFilebeat(json.getString("message").replace("\n\t", "\n").replace("\n", "---"), json.getString(
-                "priority"), json.getString("logger_name"), json.
-                getString("thread"), json.getString("timestamp"), json.getString("file"));
-        return logEntry;
+        return new LogEntryFilebeat(json.getString("message").replace("\n\t", "\n")
+          .replace("\n", "---"), json.getString("priority"), json.getString("logger_name"),
+          json.getString("thread"), json.getString("timestamp"), json.getString("file"));
       }
     });
 
@@ -136,7 +134,7 @@ public final class StreamingKafkaElastic {
   }
 
   private static JSONObject parser(String logType, String line, String appId)
-      throws CredentialsNotFoundException, WorkflowManagerException {
+      throws JWTNotFoundException, WorkflowManagerException {
     JSONObject jsonLog = new JSONObject(line);
     JSONObject index = new JSONObject();
     String priority, logger, thread, timestamp;

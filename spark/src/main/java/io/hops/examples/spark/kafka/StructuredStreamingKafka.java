@@ -16,9 +16,9 @@ package io.hops.examples.spark.kafka;
 
 import com.google.common.base.Strings;
 import com.twitter.bijection.Injection;
-import io.hops.util.exceptions.CredentialsNotFoundException;
 import io.hops.util.HopsProducer;
 import io.hops.util.Hops;
+import io.hops.util.exceptions.JWTNotFoundException;
 import io.hops.util.exceptions.SchemaNotFoundException;
 import io.hops.util.spark.SparkProducer;
 import java.text.DateFormat;
@@ -63,11 +63,11 @@ public class StructuredStreamingKafka {
       JavaSparkContext jsc = new JavaSparkContext(sparkConf);
       final List<HopsProducer> sparkProducers = new ArrayList<>();
       final DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss:SSS");
-      final List<String> messages = new ArrayList();
-      final List<String> priorities = new ArrayList();
-      final List<String> loggers = new ArrayList();
+      final List<String> messages = new ArrayList<>();
+      final List<String> priorities = new ArrayList<>();
+      final List<String> loggers = new ArrayList<>();
 
-      /**
+      /*
        * ********************************* Setup dummy test data ***********************************
        */
       messages.add("Container container_e01_1494850115055_0016_01_000002 succeeded");
@@ -123,7 +123,7 @@ public class StructuredStreamingKafka {
                 Thread.sleep(100);
                 i++;
               }
-            } catch (SchemaNotFoundException | CredentialsNotFoundException | InterruptedException ex) {
+            } catch (SchemaNotFoundException | JWTNotFoundException | InterruptedException ex) {
               LOG.log(Level.SEVERE, ex.getMessage(), ex);
             }
           }
@@ -146,11 +146,10 @@ public class StructuredStreamingKafka {
             public LogEntry call(Row record) throws Exception {
               GenericRecord genericRecord = RECORD_INJECTIONS.entrySet().iterator().next().getValue().invert(record.
                   getAs("value")).get();
-              LogEntry logEntry = new LogEntry(genericRecord.get("timestamp").toString(),
+              return new LogEntry(genericRecord.get("timestamp").toString(),
                   genericRecord.get("priority").toString(),
                   genericRecord.get("logger").toString(),
                   genericRecord.get("message").toString());
-              return logEntry;
             }
           }, Encoders.bean(LogEntry.class));
 
@@ -174,7 +173,7 @@ public class StructuredStreamingKafka {
           .trigger(Trigger.ProcessingTime(10000))
           .start();
 
-      StreamingQuery queryFile2 = logEntriesRaw.writeStream()
+      logEntriesRaw.writeStream()
           .format("text")
           .option("path", "/Projects/" + Hops.getProjectName() + "/Resources/data-text-" + Hops.getAppId())
           .option("checkpointLocation", "/Projects/" + Hops.getProjectName() + "/Resources/checkpoint-text-"
