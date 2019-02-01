@@ -20,36 +20,7 @@ object ConsumeHive {
     val sc = spark.sparkContext
     import spark.implicits._
 
-    val mySchema = StructType(Array(
-      StructField("primaryaccountholder", BinaryType),
-      StructField("agreementgenid", IntegerType),
-      StructField("productgenid", BinaryType),
-      StructField("transtypecd", StringType),
-      StructField("transactiondate", DateType),
-      StructField("accountingtypecd", StringType),
-      StructField("channeltypecd", StringType),
-      StructField("amount", DecimalType(18, 2)),
-      StructField("bankid", IntegerType),
-      StructField("secpartyrolecd", StringType),
-      StructField("secaccounttypecd", StringType),
-      StructField("secclearingnum", DecimalType(5, 0)),
-      StructField("secaccountnum", StringType),
-      StructField("secagreementgenid", IntegerType),
-      StructField("secpartygenid", BinaryType),
-      StructField("secproductgenid", BinaryType),
-      StructField("channelgenid", IntegerType),
-      StructField("transactiongenid", IntegerType),
-      StructField("systemsourcecd", StringType),
-      StructField("relatedhendelsegenid", BinaryType),
-      StructField("identificationmethodcd", StringType),
-      StructField("paymentroutinecd", StringType),
-      StructField("secbic", StringType),
-      StructField("clearingnum", DecimalType(5, 0)),
-      StructField("cardtransactionchannelcd", StringType),
-      StructField("transactioninfo", StringType),
-      StructField("hendelsegenid", BinaryType),
-      StructField("kanalgenid", StringType),
-      StructField("transactionmonth", IntegerType)))
+    val mySchema = StructType(Array())
 
 
     val dfTo = spark.readStream.format("kafka").
