@@ -22,7 +22,7 @@ public class HudiFeatureStore {
     
     logger.info("Hello Feature Store! version:" + spark.version());
     
-    Dataset ds = spark.read().json("hdfs:///Projects/Hudi/DataSource/batch_1.json");
+    Dataset ds = spark.read().json(args[0]);
     Hops.createFeaturegroup("likeanything").setDataframe(ds);
     //Stop spark session
     spark.stop();
