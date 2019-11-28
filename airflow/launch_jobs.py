@@ -80,7 +80,9 @@ task0 = HopsworksLaunchOperator(dag=dag,
                                 project_name=PROJECT_NAME,
                                 # Arbitrary task name
                                 task_id="run_{0}".format(JOB_NAME_0),
-                                job_name=JOB_NAME_0)
+                                job_name=JOB_NAME_0,
+                                #job_arguments="hello" #Optionally set "job_arguments" as input for your program
+                                )
 
 # Second task of DAG
 task1 = HopsworksLaunchOperator(dag=dag,
