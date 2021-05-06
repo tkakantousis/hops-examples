@@ -1,0 +1,6 @@
+executions = {'type': 'executionDTO', 'count': 2, 'href': 'https://8a4c06f0-c508-11ea-ac91-19f73699d396.aws.hopsworks.ai/hopsworks-api/api/project/120/jobs/flinkcluster/executions', 'items': [{'type': 'executionDTO', 'href': 'https://8a4c06f0-c508-11ea-ac91-19f73699d396.aws.hopsworks.ai/hopsworks-api/api/project/120/jobs/flinkcluster/executions/43', 'args': '', 'duration': 3045, 'filesToRemove': [], 'finalStatus': 'UNDEFINED', 'hdfsUser': 'bla__meb10179', 'id': 43, 'progress': 0.0, 'state': 'INITIALIZING', 'submissionTime': '2020-07-15T15:23:59Z', 'user': {'href': 'https://8a4c06f0-c508-11ea-ac91-19f73699d396.aws.hopsworks.ai/hopsworks-api/api/users/10179'}}, {'type': 'executionDTO', 'href': 'https://8a4c06f0-c508-11ea-ac91-19f73699d396.aws.hopsworks.ai/hopsworks-api/api/project/120/jobs/flinkcluster/executions/42', 'args': '', 'duration': 4542, 'filesToRemove': [], 'finalStatus': 'UNDEFINED', 'hdfsUser': 'bla__meb10179', 'id': 42, 'progress': 0.0, 'state': 'INITIALIZING', 'submissionTime': '2020-07-15T15:23:57Z', 'user': {'href': 'https://8a4c06f0-c508-11ea-ac91-19f73699d396.aws.hopsworks.ai/hopsworks-api/api/users/10179'}}]}
+
+
+if executions['count'] > 0:
+    for execution in executions['items']:
+        print("id: " + str(execution['id']))

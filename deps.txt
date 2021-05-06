@@ -1,0 +1,34 @@
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] hops-examples                                                      [pom]
+[INFO] hops-examples-spark                                                [jar]
+[INFO] hops-examples-hive                                                 [jar]
+[INFO] hops-examples-featurestore-tour                                    [jar]
+[INFO] hops-examples-featurestore-util4j                                  [jar]
+[INFO] 
+[INFO] -----------------------< io.hops:hops-examples >------------------------
+[INFO] Building hops-examples 1.4.0-SNAPSHOT                              [1/5]
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for hops-examples 1.4.0-SNAPSHOT:
+[INFO] 
+[INFO] hops-examples ...................................... FAILURE [  1.729 s]
+[INFO] hops-examples-spark ................................ SKIPPED
+[INFO] hops-examples-hive ................................. SKIPPED
+[INFO] hops-examples-featurestore-tour .................... SKIPPED
+[INFO] hops-examples-featurestore-util4j .................. SKIPPED
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.129 s
+[INFO] Finished at: 2020-07-16T09:52:02+02:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal on project hops-examples: Could not resolve dependencies for project io.hops:hops-examples:pom:1.4.0-SNAPSHOT: The following artifacts could not be resolved: io.hops:hadoop-client:jar:3.2.0.0-SNAPSHOT, io.hops:hadoop-common:jar:3.2.0.0-SNAPSHOT, io.hops:hadoop-auth:jar:3.2.0.0-SNAPSHOT, io.hops.metadata:hops-metadata-dal:jar:3.2.0.0-SNAPSHOT, io.hops:hops-leader-election:jar:3.2.0.0-SNAPSHOT, io.hops:hadoop-hdfs-client:jar:3.2.0.0-SNAPSHOT, io.hops:hadoop-yarn-api:jar:3.2.0.0-SNAPSHOT, io.hops:hadoop-yarn-client:jar:3.2.0.0-SNAPSHOT, io.hops:hadoop-mapreduce-client-core:jar:3.2.0.0-SNAPSHOT, io.hops:hadoop-yarn-common:jar:3.2.0.0-SNAPSHOT, io.hops:hadoop-hdfs:jar:3.2.0.0-SNAPSHOT, io.hops:hadoop-mapreduce-client-jobclient:jar:3.2.0.0-SNAPSHOT, io.hops:hadoop-mapreduce-client-common:jar:3.2.0.0-SNAPSHOT, io.hops:hadoop-annotations:jar:3.2.0.0-SNAPSHOT: Cannot access Hops (https://archiva.hops.works/repository/Hops/) in offline mode and the artifact io.hops:hadoop-client:jar:3.2.0.0-20200714.204618-61 has not been downloaded from it before. -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/DependencyResolutionException
